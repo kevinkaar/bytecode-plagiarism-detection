@@ -1,0 +1,5 @@
+classId,method,bytecode
+klass_ID1,public long getFooPlusFour(),aload_0 getfield iconst_4 iadd i2l lreturn
+klass_ID2,public long getBarPlusFourAndSout(),getstatic aload_0 getfield invokevirtual aload_0 getfield iconst_4 iadd i2l lreturn
+klass_ID1,public long getFooPlusFour(),aload_0 getfield iconst_4 iadd i2l lreturn
+klass_ID2,public long getBarPlusFourAndSout(),getstatic aload_0 getfield invokevirtual aload_0 getfield iconst_4 iadd i2l lreturn
