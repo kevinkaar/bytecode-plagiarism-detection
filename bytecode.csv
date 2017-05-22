@@ -126,3 +126,7 @@ klass_ID2,private boolean lambda$loadPassengers$3(Passenger.Passenger),aload_1 i
 klass_ID2,private boolean lambda$loadPassengers$2(Passenger.Passenger),aload_1 invokevirtual aload_0 getfield if_icmpeq iconst_1 goto iconst_0 ireturn
 klass_ID2,private static boolean lambda$loadPassengers$1(Passenger.Passenger),aload_0 invokevirtual ifnull iconst_1 goto iconst_0 ireturn
 klass_ID2,private boolean lambda$unloadPassengers$0(Passenger.Passenger),aload_1 invokevirtual aload_0 getfield if_acmpne iconst_1 goto iconst_0 ireturn
+klass_ID1,"public TestIdentical1(int, long)",aload_0 invokespecial aload_0 iload_1 putfield aload_0 lload_2 putfield return
+klass_ID1,public long getFooPlusBar(),aload_0 getfield i2l aload_0 getfield ladd lreturn
+klass_ID2,"public TestIdentical2(int, long)",aload_0 invokespecial aload_0 iload_1 putfield aload_0 lload_2 putfield return
+klass_ID2,public long getLengthPlusWidth(),aload_0 getfield i2l aload_0 getfield ladd lreturn
