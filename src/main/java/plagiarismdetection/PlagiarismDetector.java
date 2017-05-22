@@ -63,8 +63,6 @@ public class PlagiarismDetector {
                         res.getMethod1(), res.getMethod2(), res.getMatchingInstructions(), res.getTotalInstructions(),
                         new DecimalFormat("#.##").format(res.getShorterInLongerRatio()) + "%")));
         System.out.println("\n### FIND PLAGIARISM END   ###");
-
-        //CsvService.readFromCsv();
     }
 
     private ClassComparisonResult getAllToAllComparedMethodsComparedResults(MappedByteCode toCompare1, MappedByteCode toCompare2) {

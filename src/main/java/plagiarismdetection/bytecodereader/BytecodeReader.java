@@ -2,6 +2,7 @@ package plagiarismdetection.bytecodereader;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.SystemUtils;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zeroturnaround.exec.ProcessExecutor;
 import org.zeroturnaround.exec.stream.slf4j.Slf4jStream;
@@ -18,12 +19,8 @@ public class BytecodeReader {
             path = changePathExtensionToClass(path);
 
             return getClassBytecode(path);
-        } else if (FilenameUtils.getExtension(path).equals("class")) {
-            return getClassBytecode(path);
-        } else {
-            //TODO: throw some custom invalid file extension exception
-            return null;
         }
+        return getClassBytecode(path);
     }
 
     private String changePathExtensionToClass(String path) {
@@ -60,19 +57,12 @@ public class BytecodeReader {
     private String[] getProcessExecutorCommandByOSSystemAndProcessName(CommandLineProcess process, String path) {
         String[] command = new String[]{};
 
-        if (SystemUtils.IS_OS_WINDOWS) {
-            if (process.equals(CommandLineProcess.JAVAC)) {
-                command = new String[]{"javac", path};
-            } else if (process.equals(CommandLineProcess.JAVAP)) {
-                command = new String[]{"javap", "-c", "-p", path};
-            }
-        } else {
-            if (process.equals(CommandLineProcess.JAVAC)) {
-                command = new String[]{"javac", path};
-            } else if (process.equals(CommandLineProcess.JAVAP)) {
-                command = new String[]{"javap", "-c", "-p", path};
-            }
+        if (process.equals(CommandLineProcess.JAVAC)) {
+            command = new String[]{"javac", path};
+        } else if (process.equals(CommandLineProcess.JAVAP)) {
+            command = new String[]{"javap", "-c", "-p", path};
         }
+
         return command;
     }
 

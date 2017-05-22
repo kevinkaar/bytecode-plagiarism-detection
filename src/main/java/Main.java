@@ -15,13 +15,14 @@ public class Main {
         //PlagiarismDetector plagiarismDetector = new PlagiarismDetector(new ComparableHelper("klass_ID1", "filestotest/TestChangeOfOrder1.java"), new ComparableHelper("klass_ID2", "filestotest/TestChangeOfOrder2.java"));
         //PlagiarismDetector plagiarismDetector = new PlagiarismDetector(new ComparableHelper("klass_ID1", "filestotest/TestArbitraryCode1.java"), new ComparableHelper("klass_ID2", "filestotest/TestArbitraryCode2.java"));
         //PlagiarismDetector plagiarismDetector = new PlagiarismDetector(new ComparableHelper("klass_ID1", "filestotest/TrainStation_moss84.class"), new ComparableHelper("klass_ID2", "filestotest/Station_moss84.java"));
-        PlagiarismDetector plagiarismDetector = new PlagiarismDetector(new ComparableHelper("klass_ID1", "filestotest/train_moss77_a.class"), new ComparableHelper("klass_ID2", "filestotest/Train_moss77_b.class"));
+        //PlagiarismDetector plagiarismDetector = new PlagiarismDetector(new ComparableHelper("klass_ID1", "filestotest/train_moss77_a.class"), new ComparableHelper("klass_ID2", "filestotest/Train_moss77_b.class"));
+        PlagiarismDetector plagiarismDetector = new PlagiarismDetector(new ComparableHelper("klass_ID1", args[0]), new ComparableHelper("klass_ID2", args[1]));
 
 
         try {
             plagiarismDetector.compareBytecodes();
         } catch (InterruptedException | TimeoutException e) {
-            e.printStackTrace();
+            log.error("Error comparing bytecodes", e);
         }
     }
 }

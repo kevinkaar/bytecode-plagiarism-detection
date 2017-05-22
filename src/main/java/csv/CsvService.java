@@ -4,6 +4,8 @@ import classbytecode.MappedByteCode;
 import classbytecode.MappedByteCodeMethod;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,6 +13,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class CsvService {
+
+    private static final Logger log = LoggerFactory.getLogger(CsvService.class);
 
     private static final String FILE_NAME = "bytecode.csv";
 
@@ -21,28 +25,6 @@ public class CsvService {
     private static final String CSV_HEADER_METHOD = "method";
 
     private static final char CSV_DELIMITER = ',';
-
-    public static void readFromCsv() {
-        CsvReader reader = null;
-        try {
-            reader = new CsvReader(FILE_NAME);
-            reader.readHeaders();
-
-            while (reader.readRecord()) {
-                String classId = reader.get(CSV_HEADER_CLASS_ID);
-                String method = reader.get(CSV_HEADER_METHOD);
-                String bytecode = reader.get(CSV_HEADER_BYTECODE);
-
-                System.out.println(classId + " " + method + " " + bytecode);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            reader.close();
-        }
-    }
 
     public static void writeOrAppendBytecodeToCSV(MappedByteCode... mappedBytecode) {
         boolean fileExists = new File(FILE_NAME).exists();
@@ -72,18 +54,14 @@ public class CsvService {
             csvOutput.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error writing method bytecode to csv", e);
         } finally {
             csvOutput.close();
         }
     }
 
-    private static void write(CsvWriter writer, String value) {
-        try {
-            writer.write(value);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private static void write(CsvWriter writer, String value) throws IOException {
+        writer.write(value);
     }
 
 }
